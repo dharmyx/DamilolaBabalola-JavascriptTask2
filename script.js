@@ -15,58 +15,24 @@ let data = [{
         time: 3
     }
 ];
-
-function interestCalculator(data) {
+function interestCalculator(arr) {
     let interestData = [];
     for (let i = 0; i < data.length; i++) {
-        let interest = '';
-        let rate = 0;
-        let myInterest = {};
-        let principal = data[i].principal;
-        let time = data[i].time;
-        if (principal >= 2500 && time > 1 && time <= 3) {
-            rate = 3;
-            interest = (principal * rate * time) / 100;
-            myInterest = {
-                principal: principal,
-                rate: rate,
-                time: time,
-                interest: interest
-            };
-            interestData.push(myInterest);
-        } else if (principal >= 2500 && time >= 3) {
-            rate = 4
-            interest = (principal * rate * time) / 100;
-            myInterest = {
-                principal: principal,
-                rate: rate,
-                time: time,
-                interest: interest
-            };
-            interestData.push(myInterest);
-        } else if (principal < 2500 || time <= 1) {
-            rate = 2
-            interest = (principal * rate * time) / 100;
-            myInterest = {
-                principal: principal,
-                rate: rate,
-                time: time,
-                interest: interest
-            };
-            interestData.push(myInterest);
+        let item = data[i];
+        if (item.principal >= 2500 && item.time > 1 && item.time <= 3) {
+            item.rate = 3;
+        } else if (item.principal >= 2500 && item.time >= 3) {
+            item.rate = 4;
+        } else if (item.principal < 2500 || item.time <= 1) {
+            item.rate = 2;
         } else {
-            rate = 1
-            interest = (principal * rate * time) / 100;
-            myInterest = {
-                principal: principal,
-                rate: rate,
-                time: time,
-                interest: interest
-            };
-            interestData.push(myInterest);
+            item.rate = 1;
         }
+
+        item.interest = (item.principal * item.rate * item.time) / 100;
+        interestData.push(item);
     }
     console.log(interestData);
-    return interestData;
+        return interestData;
 }
 interestCalculator(data);
